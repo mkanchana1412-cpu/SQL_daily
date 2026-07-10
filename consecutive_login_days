@@ -1,0 +1,8 @@
+SELECT user_id, login_date
+FROM logins l1
+WHERE EXISTS (
+    SELECT 1
+    FROM logins l2
+    WHERE l2.user_id = l1.user_id
+    AND l2.login_date = DATE_SUB(l1.login_date, INTERVAL 1 DAY)
+);
